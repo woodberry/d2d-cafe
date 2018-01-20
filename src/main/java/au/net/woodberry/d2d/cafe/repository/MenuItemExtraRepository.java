@@ -6,6 +6,6 @@ public class MenuItemExtraRepository implements Repository<MenuItemExtra> {
 
     @Override
     public MenuItemExtra findByValue(String value) {
-        return null;
+        return RepositoryData.MENU_ITEM_EXTRAS.get(value);
     }
 }
