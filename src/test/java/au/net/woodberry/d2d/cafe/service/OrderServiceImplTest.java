@@ -97,7 +97,7 @@ public class OrderServiceImplTest {
     @Test
     public void testPrepareOrderInvalidOptionalExtra() throws UnableToFulfilOrderException {
         expectedException.expect(UnableToFulfilOrderException.class);
-        expectedException.expectMessage("Could not find one or more of optional extra menu items: Ensure that all optional items exist.");
+        expectedException.expectMessage("Could not find one or more of optional extra menu items: [Milk, Sugar, Sprinkles]. Ensure that all optional items exist.");
         orderService.prepareOrder("Arabica", "Cappuccino", "Milk", "Sugar", "Sprinkles");
     }
 
@@ -131,5 +131,12 @@ public class OrderServiceImplTest {
 
         BigDecimal totalCost = orderService.getTotalCost(order, "Addict");
         assertThat(totalCost).isEqualByComparingTo("11.70");
+    }
+
+    @Test
+    public void testGetTotalCostSizeIsInvalid() throws UnableToFulfilOrderException {
+        expectedException.expect(UnableToFulfilOrderException.class);
+        expectedException.expectMessage("No menu item with size 'Mega Tiny' available.");
+        orderService.getTotalCost(new ArrayList<>(), "Mega Tiny");
     }
 }

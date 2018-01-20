@@ -6,6 +6,6 @@ public class MenuItemPreparationRepository implements Repository<MenuItemPrepara
 
     @Override
     public MenuItemPreparation findByValue(String value) {
-        return RepositoryData.MENU_ITEM_PREPARATION.get(value);
+        return RepositoryData.MENU_ITEM_PREPARATIONS.get(value);
     }
 }

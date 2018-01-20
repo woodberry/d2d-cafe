@@ -10,6 +10,7 @@ import au.net.woodberry.d2d.cafe.repository.Repository;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
@@ -48,12 +49,15 @@ public class OrderServiceImpl implements OrderService {
         order.add(menuItemPreparation);
 
         // Optional condiments - can be empty.
-        List<MenuItemExtra> menuItemExtras = menuItemExtraRepository.findByValuesIn(optionalExtras);
-        if (menuItemExtras.size() != optionalExtras.length) {
-            throw new UnableToFulfilOrderException("Could not find one or more of optional extra menu items: Ensure that all optional items exist.");
-        }
-        if (!menuItemExtras.isEmpty()) {
-            order.addAll(menuItemExtras);
+        if (optionalExtras != null) {
+            List<MenuItemExtra> menuItemExtras = menuItemExtraRepository.findByValuesIn(optionalExtras);
+            if (menuItemExtras.size() != optionalExtras.length) {
+                throw new UnableToFulfilOrderException("Could not find one or more of optional extra menu items: " + Arrays.toString(optionalExtras)
+                        + ". Ensure that all optional items exist.");
+            }
+            if (!menuItemExtras.isEmpty()) {
+                order.addAll(menuItemExtras);
+            }
         }
         return order;
     }
