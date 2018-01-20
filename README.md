@@ -1,5 +1,5 @@
 # d2d-cafe
-####How to run
+#### How to run
 
 There is a simple demo Application Runner which simulates a point of sale transaction
 inside the test folder package `au.net.woodberry.d2d.cafe`
@@ -14,7 +14,7 @@ The `CafeDemo.java` runner will run a sample point of sale transaction and outpu
     Optional Extras : [Milk, Sugar, Coco powder]
     --------
     Total cost      : 4.35
-####Key Design Points
+#### Key Design Points
 
 * The solution is kept purposely simple - No 3rd party libraries were ultimately required on the mainline.
 * The point of sale solution from a backend perspective is an `OrderService` that accepts any type of `MenuItem`. 
@@ -29,7 +29,7 @@ For Example:
 |:---:|:---:|:---:|:---:|
 | Dark roast ($1) | Latte (+ $1.00)| Sugar (+ $0.25) | Large (x1.5) |
 
-####Quality control
+#### Quality control
 * All unit tests are located in `OrderServiceImplTest`.
 * This test class uses Mockito's `@Spy` annotation instead of `@Mock`. Normally, there would be unit tests for 
   the repository layer but as the repositories themselves are essentially mocked through the use of static data, 
