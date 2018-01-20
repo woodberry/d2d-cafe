@@ -28,7 +28,7 @@ public interface OrderService {
      *
      * @param menuItems A list of menu items that make up the order.
      * @param sizeName  The size of the order.
-     * @return The total cost of the order
+     * @return The total cost of the order. Note: The rounding is to the nearest cent.
      * @throws UnableToFulfilOrderException If the order is invalid and the total cost cannot be determined.
      */
     BigDecimal getTotalCost(List<MenuItem> menuItems, String sizeName) throws UnableToFulfilOrderException;

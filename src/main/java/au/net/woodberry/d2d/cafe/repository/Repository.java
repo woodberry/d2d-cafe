@@ -26,6 +26,8 @@ public interface Repository<T> {
      * @return The result if found, empty otherwise.
      */
     default List<T> findByValuesIn(String... values) {
-        return Stream.of(values).map(this::findByValue).collect(Collectors.toList());
+        return Stream.of(values).map(this::findByValue)
+                .filter(value -> value != null)
+                .collect(Collectors.toList());
     }
 }
